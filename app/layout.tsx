@@ -2,6 +2,7 @@ import "./globals.css";
 import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Navbar } from "@/components/shared";
 
 export const metadata: Metadata = {
   title: "Peace",
@@ -19,6 +20,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
           enableSystem
           disableTransitionOnChange
         >
+          <Navbar />
           <main>{children}</main>
         </ThemeProvider>
       </body>
