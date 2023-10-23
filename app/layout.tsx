@@ -13,7 +13,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body className="max-w-[1444px] mx-aut sm:mx-3">
+      <body className="max-w-[1444px] sm:mx-3 md:mx-auto">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

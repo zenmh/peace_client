@@ -3,7 +3,7 @@
 import { logo } from "@/assets/images";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Btn } from ".";
+import { Btn, ModeSwitcher } from ".";
 
 const Navbar = () => {
   const { push } = useRouter();
@@ -17,7 +17,8 @@ const Navbar = () => {
         <Image src={logo} alt="logo" width={50} height={50} />
         <h2 className="text-2xl font-semibold mx-2">Peace</h2>
       </div>
-      <div>
+      <div className="flex flex-row items-center justify-between gap-2">
+        <ModeSwitcher />
         <Btn
           label="Sign Up"
           onClick={() => push("/signup")}
