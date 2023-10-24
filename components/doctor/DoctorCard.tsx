@@ -6,7 +6,7 @@ import { MapPin } from "lucide-react";
 import { Tooltip } from "../shared";
 
 interface DoctorCardProps {
-  image: any;
+  image?: any;
   name: string;
   speciality: string;
   branch: string;
@@ -20,14 +20,22 @@ const DoctorCard: FC<DoctorCardProps> = ({
 }) => {
   return (
     <div className="rounded-lg border-2 dark:border-neutral-500 border-neutral-300 overflow-hidden max-w-[300px] flex flex-col justify-between">
-      <Image
-        src={image}
-        alt="doctor"
-        height={300}
-        width={300}
-        layout="responsive"
-        className="rounded-t-lg hover:scale-105 transition duration-300"
-      />
+      {image ? (
+        <Image
+          src={image}
+          alt="doctor"
+          height={300}
+          width={300}
+          layout="responsive"
+          className="rounded-t-lg hover:scale-105 transition duration-300"
+        />
+      ) : (
+        <div className="h-[300px] w-[300px] bg-slate-600 text-center">
+          <p className="text-[300px] mt-[-70px] font-bold dark:text-zinc-800">
+            {name.slice(0, 1)}
+          </p>
+        </div>
+      )}
       <div className="m-2">
         <Tooltip
           hoverText="Visit Doctors Profile"
@@ -45,7 +53,7 @@ const DoctorCard: FC<DoctorCardProps> = ({
           hoverText="The Doctor from Dhaka Branch"
           className="flex flex-row items-center justify-start font-semibold"
         >
-          <MapPin size={24} color="#1DB5BA" />
+          <MapPin size={20} color="#1DB5BA" />
           &nbsp;{branch}
         </Tooltip>
       </div>
