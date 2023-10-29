@@ -2,6 +2,9 @@ import { baseApi } from "./baseApi";
 
 const doctorApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
+    getDoctor: build.query({
+      query: (id) => `/doctors/${id}`,
+    }),
     getDoctors: build.query({
       query: (data) => ({
         url: "/doctors",
@@ -12,4 +15,4 @@ const doctorApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetDoctorsQuery } = doctorApi;
+export const { useGetDoctorQuery, useGetDoctorsQuery } = doctorApi;
