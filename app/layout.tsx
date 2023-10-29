@@ -3,14 +3,15 @@ import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Footer, Navbar } from "@/components/shared";
+import Providers from "@/lib/Providers";
 
 export const metadata: Metadata = {
   title: "Peace",
   description: "Created by Mehedi Hasan",
 };
 
-const RootLayout = ({ children }: { children: ReactNode }) => {
-  return (
+const RootLayout = ({ children }: { children: ReactNode }) => (
+  <Providers>
     <html lang="en" suppressHydrationWarning>
       <head />
       <body className="max-w-[1444px] sm:mx-3 md:mx-auto">
@@ -26,7 +27,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         </ThemeProvider>
       </body>
     </html>
-  );
-};
+  </Providers>
+);
 
 export default RootLayout;
