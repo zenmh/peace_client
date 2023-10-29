@@ -30,7 +30,7 @@ const DoctorCard: FC<DoctorCardProps> = ({
           className="rounded-t-lg hover:scale-105 transition duration-300"
         />
       ) : (
-        <div className="h-[300px] w-[300px] bg-slate-600 text-center">
+        <div className="h-[300px] w-[300px] bg-slate-600 dark:bg-gray-700 text-center">
           <p className="text-[300px] mt-[-70px] font-bold dark:text-zinc-800">
             {name.slice(0, 1)}
           </p>
