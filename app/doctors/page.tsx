@@ -35,6 +35,7 @@ const Doctors = () => {
             {doctors?.data?.map((doctor: IDoctor) => (
               <DoctorCard
                 key={doctor.id}
+                id={doctor?.id}
                 image={doctor?.image}
                 name={doctor?.name}
                 speciality={doctor?.speciality}

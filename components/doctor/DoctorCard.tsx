@@ -4,8 +4,10 @@ import { FC } from "react";
 import Image from "next/image";
 import { MapPin } from "lucide-react";
 import { Tooltip } from "../shared";
+import { useRouter } from "next/navigation";
 
 interface DoctorCardProps {
+  id: string;
   image?: any;
   name: string;
   speciality: string;
@@ -13,11 +15,14 @@ interface DoctorCardProps {
 }
 
 const DoctorCard: FC<DoctorCardProps> = ({
+  id,
   image,
   name,
   speciality,
   branch,
 }) => {
+  const { push } = useRouter();
+
   return (
     <div className="rounded-lg border-2 dark:border-neutral-500 border-neutral-300 overflow-hidden max-w-[300px] flex flex-col justify-between">
       {image ? (
@@ -38,6 +43,7 @@ const DoctorCard: FC<DoctorCardProps> = ({
       )}
       <div className="m-2">
         <Tooltip
+          onClick={() => push(`/doctors/${id}`)}
           hoverText="Visit Doctors Profile"
           className="truncate text-xl text-[#005963] dark:text-zinc-300 font-bold"
         >
