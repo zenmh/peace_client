@@ -1,6 +1,6 @@
 "use client";
 
-import { Btn } from "@/components/shared";
+import { Btn, Inp } from "@/components/shared";
 import {
   Card,
   CardContent,
@@ -9,7 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Auth = () => {
@@ -29,7 +28,12 @@ const Auth = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
-              <Input id="name" placeholder="Your Name" className="space-y-1" />
+              <Inp
+                name="name"
+                placeholder="Your Name"
+                type="text"
+                errorMessage=""
+              />
             </CardContent>
             <CardFooter>
               <Btn label="Sign Up" className="w-full" />
@@ -45,7 +49,12 @@ const Auth = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
-              <Input id="current" type="password" />
+              <Inp
+                name="name"
+                placeholder="Your Name"
+                type="text"
+                errorMessage=""
+              />
             </CardContent>
             <CardFooter>
               <Btn label="Sign In" className="w-full" />
