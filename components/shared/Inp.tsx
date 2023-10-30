@@ -10,7 +10,7 @@ interface InpProps {
   register?: any;
   errors?: any;
   error?: boolean;
-  errorMessage?: string;
+  errorMessage: string;
 }
 
 const Inp: FC<InpProps> = ({
@@ -24,7 +24,12 @@ const Inp: FC<InpProps> = ({
 }) => {
   return (
     <>
-      <Input type={type} placeholder={placeholder} />
+      <Input
+        type={type}
+        placeholder={placeholder}
+        {...register(name as string, { required: errorMessage })}
+      />
+      {errors[name] && <p className="text-rose-400">{errors[name].message}</p>}
     </>
   );
 };
