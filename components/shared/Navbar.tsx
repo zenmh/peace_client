@@ -19,11 +19,7 @@ const Navbar = () => {
       </div>
       <div className="flex flex-row items-center justify-between gap-2">
         <ModeSwitcher />
-        <Btn
-          label="Sign Up"
-          onClick={() => push("/signup")}
-          variant="default"
-        />
+        <Btn label="Sign In" onClick={() => push("/auth")} variant="default" />
       </div>
     </nav>
   );
