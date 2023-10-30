@@ -12,11 +12,13 @@ interface BtnProps {
     | "ghost"
     | "link";
   onClick?: () => void;
+  className?: string;
 }
 
-const Btn: FC<BtnProps> = ({ label, type, variant, onClick }) => {
+const Btn: FC<BtnProps> = ({ label, type, variant, onClick, className }) => {
   return (
     <Button
+      className={className}
       onClick={onClick}
       type={type ? type : "button"}
       variant={variant ? variant : "default"}
