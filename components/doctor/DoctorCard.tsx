@@ -5,6 +5,7 @@ import Image from "next/image";
 import { MapPin } from "lucide-react";
 import { Tooltip } from "../shared";
 import { useRouter } from "next/navigation";
+import { doctor_avatar } from "@/assets/images";
 
 interface DoctorCardProps {
   id: string;
@@ -25,22 +26,14 @@ const DoctorCard: FC<DoctorCardProps> = ({
 
   return (
     <div className="rounded-lg border-2 dark:border-neutral-500 border-neutral-300 overflow-hidden max-w-[300px] flex flex-col justify-between">
-      {image ? (
-        <Image
-          src={image}
-          alt="doctor"
-          height={300}
-          width={300}
-          layout="responsive"
-          className="rounded-t-lg hover:scale-105 transition duration-300"
-        />
-      ) : (
-        <div className="h-[300px] w-[300px] bg-slate-600 dark:bg-gray-700 text-center">
-          <p className="text-[300px] mt-[-70px] font-bold dark:text-zinc-800">
-            {name.slice(0, 1)}
-          </p>
-        </div>
-      )}
+      <Image
+        src={image ? image : doctor_avatar}
+        alt="doctor"
+        height={300}
+        width={300}
+        layout="responsive"
+        className="rounded-t-lg hover:scale-105 transition duration-300"
+      />
       <div className="m-2">
         <Tooltip
           onClick={() => push(`/doctors/${id}`)}
