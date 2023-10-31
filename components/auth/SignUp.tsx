@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Btn, Inp } from "../shared";
 import {
@@ -25,9 +26,18 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<SignUpData>();
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
+    try {
+      setLoading(true);
+      console.log(data);
+    } catch (err) {
+      console.log("Error From Sign Up -->", err);
+    } finally {
+      reset();
+      setLoading(false);
+    }
   });
 
   return (
@@ -39,13 +49,43 @@ const SignUp = () => {
         </CardDescription>
       </CardHeader>
       <form onSubmit={onSubmit}>
-        <CardContent className="space-y-2">
+        <CardContent className="space-y-4">
           <Inp
             name="name"
             placeholder="Your Name"
             type="text"
             register={register}
-            errorMessage="Name is requried"
+            errorMessage="Please write your name"
+            errors={errors}
+          />
+          <Inp
+            name="email"
+            placeholder="Enter Email"
+            type="email"
+            register={register}
+            errorMessage="Please enter your email"
+            errors={errors}
+          />
+          <Inp
+            name="password"
+            placeholder="Password"
+            type="password"
+            register={register}
+            errorMessage="Please set a strong password"
+            errors={errors}
+          />
+          <Inp
+            name="contactNo"
+            placeholder="Contact No"
+            type="text"
+            register={register}
+            errors={errors}
+          />
+          <Inp
+            name="image"
+            placeholder=""
+            type="file"
+            register={register}
             errors={errors}
           />
         </CardContent>
