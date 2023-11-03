@@ -11,6 +11,7 @@ import {
 } from "../ui/card";
 import { Eye, EyeOffIcon } from "lucide-react";
 import { useSignUpMutation } from "@/redux/api/authApi";
+import { setUserToLocalStorage } from "@/utils/localstorage";
 
 type SignUpData = {
   name: string;
@@ -46,7 +47,7 @@ const SignUp = () => {
 
       const res = await signUp(data).unwrap();
 
-      console.log(res);
+      setUserToLocalStorage("accessToken", res?.data?.accessToken);
     } catch (err) {
       console.log("Error From Sign Up -->", err);
     } finally {
