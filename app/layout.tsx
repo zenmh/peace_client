@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Footer, Navbar } from "@/components/shared";
 import Providers from "@/lib/Providers";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Peace",
@@ -25,6 +26,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => (
           <main>{children}</main>
           <Footer />
         </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   </Providers>
