@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
+import { Eye, EyeOffIcon } from "lucide-react";
 
 type SignUpData = {
   name: string;
@@ -28,6 +29,12 @@ const SignUp = () => {
     formState: { errors },
   } = useForm<SignUpData>();
   const [isLoading, setLoading] = useState<boolean>(false);
+  const [passType, setPassType] = useState<"password" | "text">("password");
+
+  const handleShowPassword = () => {
+    if (passType === "password") setPassType("text");
+    else setPassType("password");
+  };
 
   const onSubmit = handleSubmit((data) => {
     try {
@@ -67,14 +74,23 @@ const SignUp = () => {
             errorMessage="Please enter your email"
             errors={errors}
           />
-          <Inp
-            name="password"
-            placeholder="*Password"
-            type="password"
-            register={register}
-            errorMessage="Please set a strong password"
-            errors={errors}
-          />
+          <div className="relative">
+            <Inp
+              name="password"
+              placeholder="*Password"
+              type={passType}
+              register={register}
+              errorMessage="Please set a strong password"
+              errors={errors}
+            />
+            <button
+              type="button"
+              onClick={handleShowPassword}
+              className="absolute top-0 right-0 transform z-10 cursor-default text-gray-500 hover:text-gray-600 py-2 px-3 text-lg"
+            >
+              {passType === "password" ? <EyeOffIcon /> : <Eye />}
+            </button>
+          </div>
           <Inp
             name="contactNo"
             placeholder="Contact No"
