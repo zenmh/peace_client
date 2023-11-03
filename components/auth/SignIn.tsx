@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Btn, Inp, Txtarea } from "../shared";
+import { Btn, Inp } from "../shared";
 import {
   Card,
   CardContent,
@@ -13,6 +13,8 @@ import { Eye, EyeOffIcon } from "lucide-react";
 import { useSingInMutation } from "@/redux/api/authApi";
 import { setUserToLocalStorage } from "@/utils/localstorage";
 import { accessToken } from "@/constant/localstorage";
+import { useToast } from "../ui/use-toast";
+import { ToastAction } from "@radix-ui/react-toast";
 
 type SignInData = {
   email: string;
@@ -30,6 +32,8 @@ const SignIn = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const [passType, setPassType] = useState<"password" | "text">("password");
 
+  const { toast } = useToast();
+
   const [signIn, { isLoading: signInIsLoading }] = useSingInMutation();
 
   const handleShowPassword = () => {
@@ -46,6 +50,13 @@ const SignIn = () => {
       setUserToLocalStorage(accessToken, res?.data?.accessToken);
     } catch (err) {
       console.log("Error From Sign In -->", err);
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        // @ts-ignore
+        description: err.data.message as string,
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      });
     } finally {
       reset();
       setLoading(false);
