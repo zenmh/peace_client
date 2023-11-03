@@ -10,6 +10,9 @@ import {
   CardTitle,
 } from "../ui/card";
 import { Eye, EyeOffIcon } from "lucide-react";
+import { useSingInMutation } from "@/redux/api/authApi";
+import { setUserToLocalStorage } from "@/utils/localstorage";
+import { accessToken } from "@/constant/localstorage";
 
 type SignInData = {
   email: string;
@@ -23,20 +26,26 @@ const SignIn = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<SignInData>();
+
   const [isLoading, setLoading] = useState<boolean>(false);
   const [passType, setPassType] = useState<"password" | "text">("password");
+
+  const [signIn, { isLoading: signInIsLoading }] = useSingInMutation();
 
   const handleShowPassword = () => {
     if (passType === "password") setPassType("text");
     else setPassType("password");
   };
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(async (data) => {
     try {
       setLoading(true);
-      console.log(data);
+
+      const res = await signIn(data).unwrap();
+
+      setUserToLocalStorage(accessToken, res?.data?.accessToken);
     } catch (err) {
-      console.log("Error From Sign Up -->", err);
+      console.log("Error From Sign In -->", err);
     } finally {
       reset();
       setLoading(false);
@@ -84,7 +93,7 @@ const SignIn = () => {
             label="Sign In"
             type="submit"
             className="w-full"
-            disabled={isLoading}
+            disabled={isLoading || signInIsLoading}
           />
         </CardFooter>
       </form>

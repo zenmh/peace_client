@@ -12,6 +12,7 @@ import {
 import { Eye, EyeOffIcon } from "lucide-react";
 import { useSignUpMutation } from "@/redux/api/authApi";
 import { setUserToLocalStorage } from "@/utils/localstorage";
+import { accessToken } from "@/constant/localstorage";
 
 type SignUpData = {
   name: string;
@@ -30,6 +31,7 @@ const SignUp = () => {
     control,
     formState: { errors },
   } = useForm<SignUpData>();
+
   const [isLoading, setLoading] = useState<boolean>(false);
   const [passType, setPassType] = useState<"password" | "text">("password");
 
@@ -47,7 +49,7 @@ const SignUp = () => {
 
       const res = await signUp(data).unwrap();
 
-      setUserToLocalStorage("accessToken", res?.data?.accessToken);
+      setUserToLocalStorage(accessToken, res?.data?.accessToken);
     } catch (err) {
       console.log("Error From Sign Up -->", err);
     } finally {
