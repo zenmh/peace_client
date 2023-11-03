@@ -24,6 +24,7 @@ const SignUp = () => {
     register,
     reset,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<SignUpData>();
   const [isLoading, setLoading] = useState<boolean>(false);
@@ -88,7 +89,7 @@ const SignUp = () => {
             register={register}
             errors={errors}
           />
-          {/* <Txtarea /> */}
+          <Txtarea control={control} name="address" rows={2} cols={1} />
         </CardContent>
         <CardFooter>
           <Btn label="Sign Up" type="submit" className="w-full" />
