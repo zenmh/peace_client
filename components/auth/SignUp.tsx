@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Btn, Inp } from "../shared";
+import { Btn, Inp, Txtarea } from "../shared";
 import {
   Card,
   CardContent,
@@ -88,6 +88,7 @@ const SignUp = () => {
             register={register}
             errors={errors}
           />
+          {/* <Txtarea /> */}
         </CardContent>
         <CardFooter>
           <Btn label="Sign Up" type="submit" className="w-full" />
