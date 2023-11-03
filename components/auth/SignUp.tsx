@@ -53,7 +53,7 @@ const SignUp = () => {
         <CardContent className="space-y-4">
           <Inp
             name="name"
-            placeholder="Your Name"
+            placeholder="*Your Name"
             type="text"
             register={register}
             errorMessage="Please write your name"
@@ -61,7 +61,7 @@ const SignUp = () => {
           />
           <Inp
             name="email"
-            placeholder="Enter Email"
+            placeholder="*Enter Email"
             type="email"
             register={register}
             errorMessage="Please enter your email"
@@ -69,7 +69,7 @@ const SignUp = () => {
           />
           <Inp
             name="password"
-            placeholder="Password"
+            placeholder="*Password"
             type="password"
             register={register}
             errorMessage="Please set a strong password"
@@ -92,7 +92,12 @@ const SignUp = () => {
           <Txtarea control={control} name="address" rows={2} cols={1} />
         </CardContent>
         <CardFooter>
-          <Btn label="Sign Up" type="submit" className="w-full" />
+          <Btn
+            label="Sign Up"
+            type="submit"
+            className="w-full"
+            disabled={isLoading}
+          />
         </CardFooter>
       </form>
     </Card>

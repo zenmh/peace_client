@@ -13,15 +13,24 @@ interface BtnProps {
     | "link";
   onClick?: () => void;
   className?: string;
+  disabled?: boolean;
 }
 
-const Btn: FC<BtnProps> = ({ label, type, variant, onClick, className }) => {
+const Btn: FC<BtnProps> = ({
+  label,
+  type,
+  variant,
+  onClick,
+  className,
+  disabled,
+}) => {
   return (
     <Button
       className={className}
       onClick={onClick}
       type={type ? type : "button"}
       variant={variant ? variant : "default"}
+      disabled={disabled}
     >
       {label}
     </Button>
