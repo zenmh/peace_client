@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "../ui/card";
 import { Eye, EyeOffIcon } from "lucide-react";
+import { useSignUpMutation } from "@/redux/api/authApi";
 
 type SignUpData = {
   name: string;
@@ -31,15 +32,21 @@ const SignUp = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const [passType, setPassType] = useState<"password" | "text">("password");
 
+  const [signUp, { isLoading: signUpIsLoading }] = useSignUpMutation();
+
   const handleShowPassword = () => {
     if (passType === "password") setPassType("text");
     else setPassType("password");
   };
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(async (data) => {
     try {
       setLoading(true);
-      console.log(data);
+      data.image = "";
+
+      const res = await signUp(data).unwrap();
+
+      console.log(res);
     } catch (err) {
       console.log("Error From Sign Up -->", err);
     } finally {
@@ -98,13 +105,13 @@ const SignUp = () => {
             register={register}
             errors={errors}
           />
-          <Inp
+          {/* <Inp
             name="image"
             placeholder=""
             type="file"
             register={register}
             errors={errors}
-          />
+          /> */}
           <Txtarea control={control} name="address" rows={2} cols={1} />
         </CardContent>
         <CardFooter>
@@ -112,7 +119,7 @@ const SignUp = () => {
             label="Sign Up"
             type="submit"
             className="w-full"
-            disabled={isLoading}
+            disabled={isLoading || signUpIsLoading}
           />
         </CardFooter>
       </form>

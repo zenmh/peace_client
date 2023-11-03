@@ -48,7 +48,7 @@ const SignIn = () => {
       <CardHeader>
         <CardTitle>Sign Up</CardTitle>
         <CardDescription>
-          Sign up to get connected and new updates.
+          Sign up to get connected and new updates
         </CardDescription>
       </CardHeader>
       <form onSubmit={onSubmit}>
